@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#11101b" />
+    <title>Meu Acervo — Bandas & Artistas</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="Navegação principal">
+        <a class="brand" href="#inicio" aria-label="Meu Acervo, início">
+          <span class="brand-mark" aria-hidden="true">♫</span>
+          <span>meu<span class="brand-accent">acervo</span><small>BANDAS & ARTISTAS</small></span>
+        </a>
+
+        <p class="sidebar-label">BIBLIOTECA</p>
+        <nav aria-label="Seções">
+          <a class="nav-item active" href="#colecao" aria-current="page"><span aria-hidden="true">▦</span> Explorar <span class="nav-count" id="nav-total">0</span></a>
+        </nav>
+
+        <div class="sidebar-bottom">
+          <div class="sidebar-note"><span aria-hidden="true">✦</span><strong>Sua música, seu espaço.</strong><p>Conheça as bandas e os artistas da coleção.</p></div>
+          <span class="sidebar-foot">Feito para quem vive de música.</span>
+        </div>
+      </aside>
+
+      <main id="inicio" class="main-content">
+        <header class="topbar">
+          <div class="mobile-brand">♫ <strong>meu<span>acervo</span></strong></div>
+          <span class="topbar-kicker">SUA COLEÇÃO MUSICAL</span>
+          <div class="topbar-actions">
+            <button type="button" class="refresh-button" id="atualizar"><span aria-hidden="true">↻</span> Atualizar</button>
+            <button type="button" class="add-button" id="adicionar" disabled><span aria-hidden="true">＋</span> Adicionar</button>
+          </div>
+        </header>
+
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy">
+            <span class="eyebrow"><span class="eyebrow-dot"></span> ONDE A MÚSICA GANHA ESPAÇO</span>
+            <h1 id="hero-title">Sua coleção.<br /><em>Seu ritmo.</em></h1>
+            <p>Organize as bandas e os artistas que fazem parte da sua história musical.</p>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+            <div class="vinyl"><div class="vinyl-center"><span>MA</span><small>33⅓ RPM</small></div></div>
+            <span class="music-note note-one">♪</span><span class="music-note note-two">♫</span>
+          </div>
+        </section>
+
+        <section class="stats" aria-label="Resumo da coleção">
+          <div class="stat"><span class="stat-icon purple" aria-hidden="true">▦</span><div><strong id="stat-total">0</strong><span>Na coleção</span></div></div>
+          <div class="stat"><span class="stat-icon pink" aria-hidden="true">♬</span><div><strong id="stat-bandas">0</strong><span>Bandas</span></div></div>
+          <div class="stat"><span class="stat-icon orange" aria-hidden="true">◉</span><div><strong id="stat-artistas">0</strong><span>Artistas solo</span></div></div>
+        </section>
+
+        <section id="colecao" class="collection" aria-labelledby="collection-title">
+          <div class="section-head">
+            <div><span class="section-overline">EXPLORE SEUS SONS</span><h2 id="collection-title">Minha coleção <span id="result-count">(0)</span></h2></div>
+            <p>Adicione, edite ou remova nomes da sua coleção.</p>
+          </div>
+          <p id="mensagem" class="mensagem" role="status" aria-live="polite">Carregando...</p>
+          <div id="card-grid" class="card-grid"></div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="form-dialog" class="dialog" aria-labelledby="form-title">
+      <form id="artista-form" novalidate>
+        <div class="dialog-head">
+          <div><span class="section-overline">SUA COLEÇÃO</span><h2 id="form-title">Adicionar artista</h2></div>
+          <button type="button" class="close-button" data-close="form-dialog" aria-label="Fechar">×</button>
+        </div>
+        <label class="field">Nome <input name="nome" id="campo-nome" maxlength="150" required placeholder="Ex.: Legião Urbana" /></label>
+        <div class="form-row">
+          <label class="field">Tipo <select name="tipo" required><option value="Banda">Banda</option><option value="Artista">Artista solo</option></select></label>
+          <label class="field">Ano de início <input name="ano" type="number" min="1850" required placeholder="Ex.: 1982" /></label>
+        </div>
+        <p id="form-error" class="form-error" role="alert" hidden></p>
+        <div class="dialog-actions"><button type="button" class="secondary-button" data-close="form-dialog">Cancelar</button><button type="submit" class="primary-button" id="form-submit">Adicionar</button></div>
+      </form>
+    </dialog>
+
+    <dialog id="confirm-dialog" class="dialog confirm-dialog" aria-labelledby="confirm-title">
+      <h2 id="confirm-title">Excluir da coleção?</h2>
+      <p id="confirm-message"></p>
+      <div class="dialog-actions"><button type="button" class="secondary-button" data-close="confirm-dialog">Cancelar</button><button type="button" class="danger-button" id="confirm-delete">Excluir</button></div>
+    </dialog>
+  </body>
+</html>
